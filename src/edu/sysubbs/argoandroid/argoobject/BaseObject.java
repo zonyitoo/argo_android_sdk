@@ -1,4 +1,4 @@
-package com.ragnarok.argoandroid.argoobject;
+package edu.sysubbs.argoandroid.argoobject;
 
 public class BaseObject {
 	

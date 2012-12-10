@@ -1,4 +1,4 @@
-package com.ragnarok.argoandroid.argoservices;
+package edu.sysubbs.argoandroid.argoservices;
 
 import java.util.HashMap;
 
@@ -7,11 +7,12 @@ import org.json.JSONObject;
 
 import android.util.Log;
 
-import com.ragnarok.argoandroid.argoobject.ArgoQueryUser;
-import com.ragnarok.argoandroid.util.ArgoConstant;
-import com.ragnarok.argoandroid.util.ErrorException;
-import com.ragnarok.argoandroid.util.HttpManager;
-import com.ragnarok.argoandroid.util.Site;
+
+import edu.sysubbs.argoandroid.argoobject.ArgoQueryUser;
+import edu.sysubbs.argoandroid.util.ArgoConstant;
+import edu.sysubbs.argoandroid.util.ErrorException;
+import edu.sysubbs.argoandroid.util.HttpManager;
+import edu.sysubbs.argoandroid.util.Site;
 
 public class UserQueryService {
 	public ArgoQueryUser queryOtherUser(String userid) throws ErrorException {

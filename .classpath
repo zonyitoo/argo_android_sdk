@@ -4,6 +4,6 @@
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
-	<classpathentry kind="lib" path="/home/ragnarok/Projects/ArgoAndroidSDK/libs/junit-4.9.jar"/>
+	<classpathentry kind="lib" path="/home/zonyitoo/workspace/argo_android_sdk/libs/junit-4.9.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

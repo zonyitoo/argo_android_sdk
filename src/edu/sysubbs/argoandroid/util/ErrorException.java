@@ -1,4 +1,4 @@
-package com.ragnarok.argoandroid.util;
+package edu.sysubbs.argoandroid.util;
 
 public class ErrorException extends Exception {
 	public String msg = null;

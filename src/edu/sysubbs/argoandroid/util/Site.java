@@ -1,4 +1,4 @@
-package com.ragnarok.argoandroid.util;
+package edu.sysubbs.argoandroid.util;
 
 public class Site {
 	public static String SITE = "http://bbs.sysu.edu.cn";

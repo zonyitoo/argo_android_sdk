@@ -1,9 +1,9 @@
-package com.ragnarok.argoandroid.argoobject;
+package edu.sysubbs.argoandroid.argoobject;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.ragnarok.argoandroid.util.ArgoConstant;
+import edu.sysubbs.argoandroid.util.ArgoConstant;
 
 import android.util.Log;
 

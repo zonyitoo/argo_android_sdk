@@ -1,13 +1,13 @@
-package com.ragnarok.argoandroid.argoservices;
+package edu.sysubbs.argoandroid.argoservices;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 
-import com.ragnarok.argoandroid.util.ErrorCode;
-import com.ragnarok.argoandroid.util.ErrorException;
-import com.ragnarok.argoandroid.util.HttpManager;
-import com.ragnarok.argoandroid.util.Site;
+import edu.sysubbs.argoandroid.util.ErrorCode;
+import edu.sysubbs.argoandroid.util.ErrorException;
+import edu.sysubbs.argoandroid.util.HttpManager;
+import edu.sysubbs.argoandroid.util.Site;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

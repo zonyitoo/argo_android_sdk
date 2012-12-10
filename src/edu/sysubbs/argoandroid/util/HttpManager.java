@@ -1,4 +1,4 @@
-package com.ragnarok.argoandroid.util;
+package edu.sysubbs.argoandroid.util;
 
 import java.io.BufferedReader;
 import java.io.IOException;
