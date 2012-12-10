@@ -7,7 +7,7 @@ import edu.sysubbs.argoandroid.util.ArgoConstant;
 
 import android.util.Log;
 
-public class ArgoQueryUser extends BaseObject implements PaserObject {
+public class ArgoQueryUser extends BaseObject {
 
 
 	public String userid = null;

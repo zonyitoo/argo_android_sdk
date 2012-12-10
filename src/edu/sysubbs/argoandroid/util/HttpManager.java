@@ -8,11 +8,14 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import edu.sysubbs.argoandroid.argoobject.BaseObject;
 
 import android.util.Log;
 
@@ -32,7 +35,8 @@ public class HttpManager {
 			return connection;
 	}
 	
-	public JSONObject getResposneAsJsonObject(String siteURL, String cookie, Map<String, String> data) throws ErrorException {
+	public <T extends BaseObject> T getResposneAsObject(
+			String siteURL, String cookie, Map<String, String> data, Class<T> returnClass) throws ErrorException {
 		String url = siteURL;
 		if (data != null) {
 			url += "?";
@@ -52,7 +56,19 @@ public class HttpManager {
 			String value = reader.readLine();
 			JSONObject object = new JSONObject(value);
 			if (object.get("success").toString().equals("1")) {
-				return object.getJSONObject("data");
+				//return object.getJSONObject("data");
+				try {
+					T t = returnClass.newInstance();
+					t.parse(object.getJSONObject("data"));
+					return t;
+				} catch (InstantiationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 			}
 			else {
 				String error = object.get("error").toString();
@@ -75,7 +91,8 @@ public class HttpManager {
 		return null; // for exception, or server error
 	}
 	
-	public JSONArray getResponseAsJsonArray(String siteURL, String cookie, Map<String, String> data) throws ErrorException {
+	public <T extends BaseObject> ArrayList<T> getResponseAsList(
+			String siteURL, String cookie, Map<String, String> data, Class<T> returnClass) throws ErrorException {
 		String url = siteURL;
 		if (data != null) {
 			url += "?";
@@ -97,7 +114,14 @@ public class HttpManager {
 			JSONObject object = new JSONObject(value);
 			//return array;
 			if (object.get("success").toString().equals("1")) {
-				return object.getJSONArray("data");
+				JSONArray array = object.getJSONArray("data");
+				ArrayList<T> list = new ArrayList<T>();
+				for (int i = 0; i < array.length(); i++) {
+					T t = returnClass.newInstance();
+					t.parse(array.getJSONObject(i));
+					list.add(t);
+				}
+				return list;
 			}
 			else {
 				String error = object.get("error").toString();
@@ -116,11 +140,18 @@ public class HttpManager {
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return null; // for exception, or server error
 	}
 	
-	public JSONObject postDataByMapAndGetJsonObject(String siteURL, String cookie, Map<String, String> data) throws ErrorException {
+	public <T extends BaseObject> T postDataByMapAndGetObject(
+			String siteURL, String cookie, Map<String, String> data, Class<T> returnClass) throws ErrorException {
 		try {
 			HttpURLConnection connection = baseConnect(siteURL, cookie, "POST");
 			
@@ -139,7 +170,10 @@ public class HttpManager {
 			String object = reader.readLine();
 			JSONObject jsonObject = new JSONObject(object);
 			if (jsonObject.get("success").toString().equals("1")) {
-				return jsonObject.getJSONObject("data");
+				//return jsonObject.getJSONObject("data");
+				T t = returnClass.newInstance();
+				t.parse(jsonObject.getJSONObject("success"));
+				return t;
 			}
 			else {
 				String error = jsonObject.get("error").toString();
@@ -156,6 +190,12 @@ public class HttpManager {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -163,7 +203,8 @@ public class HttpManager {
 		return null; // for exception, or server error
 	}
 	
-	public JSONArray postDataByMapAndGetJsonArray(String siteURL, String cookie, Map<String, String> data) throws ErrorException {
+	public <T extends BaseObject> ArrayList<T> postDataByMapAndGetJsonArray(
+			String siteURL, String cookie, Map<String, String> data, Class<T> returnClass) throws ErrorException {
 		try {
 			HttpURLConnection connection = baseConnect(siteURL, cookie, "POST");
 			
@@ -182,7 +223,15 @@ public class HttpManager {
 			String object = reader.readLine();
 			JSONObject jsonObject = new JSONObject(object);
 			if (jsonObject.get("success").toString().equals("1")) {
-				return jsonObject.getJSONArray("data");
+				//return jsonObject.getJSONArray("data");
+				JSONArray array = jsonObject.getJSONArray("data");
+				ArrayList<T> list = new ArrayList<T>();
+				for (int i = 0; i < array.length(); i++) {
+					T t = returnClass.newInstance();
+					t.parse(array.getJSONObject(i));
+					list.add(t);
+				}
+				return list;
 			}
 			else {
 				String error = jsonObject.get("error").toString();
@@ -199,6 +248,12 @@ public class HttpManager {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

@@ -19,9 +19,7 @@ public class UserQueryService {
 		HttpManager manager = new HttpManager();
 		HashMap<String, String> data = new HashMap<String, String>();
 		data.put("userid", userid);
-		JSONObject object = manager.getResposneAsJsonObject(Site.QUERY_USER, null, data);
-		ArgoQueryUser user = new ArgoQueryUser();
-		user.parse(object);
+		ArgoQueryUser user = manager.getResposneAsObject(Site.QUERY_USER, null, data, ArgoQueryUser.class);
 		return user;
 	}
 }
