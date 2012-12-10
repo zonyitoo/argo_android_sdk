@@ -8,4 +8,8 @@ public class ErrorCode {
 
 	public static String _201 = "201"; // 讨论区未设置(etc/menu.ini未设置）
 	public static String _202 = "202"; // 该讨论区不存在
+	
+	public static String _301 = "301"; // 未登录
+	public static String _302 = "302"; // 确认密码不匹配
+	public static String _303 = "303"; // 非法用户名
 }
