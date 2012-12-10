@@ -10,13 +10,9 @@ import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.util.Log;
-
 import edu.sysubbs.argoandroid.util.ErrorException;
 import edu.sysubbs.argoandroid.util.HttpManager;
 import edu.sysubbs.argoandroid.util.Site;
-
-import static edu.sysubbs.argoandroid.util.ArgoConstant.LOG_TAG;
 
 public class LoginCookieService {
 	// this service use to get the cookie

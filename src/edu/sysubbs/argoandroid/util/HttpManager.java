@@ -14,8 +14,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.util.Log;
-
 public class HttpManager {
 	
 	public HttpURLConnection baseConnect(String siteURL, String cookie, String method) 

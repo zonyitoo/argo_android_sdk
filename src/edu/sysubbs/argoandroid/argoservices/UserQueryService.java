@@ -2,14 +2,9 @@ package edu.sysubbs.argoandroid.argoservices;
 
 import java.util.HashMap;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.util.Log;
-
-
 import edu.sysubbs.argoandroid.argoobject.ArgoQueryUser;
-import edu.sysubbs.argoandroid.util.ArgoConstant;
 import edu.sysubbs.argoandroid.util.ErrorException;
 import edu.sysubbs.argoandroid.util.HttpManager;
 import edu.sysubbs.argoandroid.util.Site;
