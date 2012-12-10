@@ -15,13 +15,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-<<<<<<< HEAD
 import edu.sysubbs.argoandroid.argoobject.BaseObject;
 
 import android.util.Log;
 
-=======
->>>>>>> bd65d0d7c8b749013d474080ca2864724c8f371e
+
 public class HttpManager {
 	
 	public HttpURLConnection baseConnect(String siteURL, String cookie, String method) 
