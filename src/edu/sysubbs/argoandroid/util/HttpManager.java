@@ -9,6 +9,7 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 
 import org.json.JSONArray;
@@ -204,7 +205,7 @@ public class HttpManager {
 		return null; // for exception, or server error
 	}
 	
-	public <T extends BaseObject> ArrayList<T> postDataByMapAndGetJsonArray(
+	public <T extends BaseObject> ArrayList<T> postDataByMapAndGetList(
 			String siteURL, String cookie, Map<String, String> data, Class<T> returnClass) throws ErrorException {
 		try {
 			HttpURLConnection connection = baseConnect(siteURL, cookie, "POST");
