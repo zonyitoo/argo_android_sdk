@@ -24,7 +24,7 @@ public class AvatarService {
 				return bitmap;
 			}
 			else {
-				throw new ErrorException("user not exist", ErrorCode._303);
+				throw new ErrorException("User not found", ErrorCode._303);
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

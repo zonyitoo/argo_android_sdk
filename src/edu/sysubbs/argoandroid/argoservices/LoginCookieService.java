@@ -18,8 +18,11 @@ public class LoginCookieService {
 	// this service use to get the cookie
 	public String loginAndGetCookie(String username, String password) throws ErrorException {
 		HttpManager manager = new HttpManager();
-		String data = "userid=" + username + "&" + "passwd=" + password;
 		try {
+			JSONObject dataObject = new JSONObject();
+			dataObject.put("userid", username);
+			dataObject.put("passwd", password);
+			String data = dataObject.toString();
 			HttpURLConnection connection = manager.baseConnect(Site.LOGIN, null, "POST");
 			PrintWriter writer = new PrintWriter(connection.getOutputStream());
 			writer.print(data);

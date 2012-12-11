@@ -3,9 +3,6 @@ package edu.sysubbs.argoandroid.argoobject;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import edu.sysubbs.argoandroid.util.ArgoConstant;
-
-import android.util.Log;
 
 public class ArgoQueryUser extends BaseObject {
 
@@ -26,7 +23,6 @@ public class ArgoQueryUser extends BaseObject {
 	@Override
 	public void parse(JSONObject object) {
 		// TODO Auto-generated method stub
-		Log.d(ArgoConstant.LOG_TAG, "parsing");
 		try {
 			this.numPosts = object.get("numposts").toString();
 			this.userid = object.get("userid").toString();

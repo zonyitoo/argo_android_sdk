@@ -18,8 +18,6 @@ import org.json.JSONObject;
 
 import edu.sysubbs.argoandroid.argoobject.BaseObject;
 
-import android.util.Log;
-
 
 public class HttpManager {
 	
@@ -40,6 +38,7 @@ public class HttpManager {
 	public <T extends BaseObject> T getResposneAsObject(
 			String siteURL, String cookie, Map<String, String> data, Class<T> returnClass) throws ErrorException {
 		String url = siteURL;
+		/*
 		if (data != null) {
 			url += "?";
 			String queryData = "";
@@ -49,9 +48,19 @@ public class HttpManager {
 			}
 			queryData = queryData.substring(0, queryData.length() - 1);
 			url += queryData;
-		}
+		}*/
 		try {
+			JSONObject dataObject = new JSONObject();
+			for (String key : data.keySet()) {
+				dataObject.put(key, data.get(key));
+			}
+			String passData = dataObject.toString();
 			HttpURLConnection connection = baseConnect(url, cookie, "GET");
+			
+			PrintWriter writer = new PrintWriter(connection.getOutputStream());
+			writer.print(passData);
+			writer.flush();
+			
 			connection.connect();
 			InputStreamReader isr = new InputStreamReader(connection.getInputStream());
 			BufferedReader reader = new BufferedReader(isr);
@@ -96,6 +105,7 @@ public class HttpManager {
 	public <T extends BaseObject> ArrayList<T> getResponseAsList(
 			String siteURL, String cookie, Map<String, String> data, Class<T> returnClass) throws ErrorException {
 		String url = siteURL;
+		/*
 		if (data != null) {
 			url += "?";
 			String queryData = "";
@@ -105,10 +115,18 @@ public class HttpManager {
 			}
 			queryData = queryData.substring(0, queryData.length() - 1);
 			url += queryData;
-		}
+		}*/
 		try {
+			JSONObject dataObject = new JSONObject();
+			for (String key : data.keySet()) {
+				dataObject.put(key, data.get(key));
+			}
+			String passData = dataObject.toString();
 			HttpURLConnection connection = baseConnect(url, cookie, "GET");
-			connection.connect();
+			
+			PrintWriter writer = new PrintWriter(connection.getOutputStream());
+			writer.print(passData);
+			writer.flush();
 			
 			InputStreamReader isr = new InputStreamReader(connection.getInputStream());
 			BufferedReader reader = new BufferedReader(isr);
@@ -155,15 +173,20 @@ public class HttpManager {
 	public <T extends BaseObject> T postDataByMapAndGetObject(
 			String siteURL, String cookie, Map<String, String> data, Class<T> returnClass) throws ErrorException {
 		try {
-			HttpURLConnection connection = baseConnect(siteURL, cookie, "POST");
-			
+			/*
 			String value = "";
 			for (String key : data.keySet()) {
 				value += key + "=" + data.get(key) + "&";
 			}
-			value = value.substring(0, value.length() - 1); // remove the last &
+			value = value.substring(0, value.length() - 1); // remove the last &*/
+			JSONObject dataObject = new JSONObject();
+			for (String key : data.keySet()) {
+				dataObject.put(key, data.get(key));
+			}
+			String passData = dataObject.toString();
+			HttpURLConnection connection = baseConnect(siteURL, cookie, "POST");
 			PrintWriter writer = new PrintWriter(connection.getOutputStream());
-			writer.print(value);
+			writer.print(passData);
 			writer.flush();
 			connection.connect();
 			
@@ -208,15 +231,14 @@ public class HttpManager {
 	public <T extends BaseObject> ArrayList<T> postDataByMapAndGetList(
 			String siteURL, String cookie, Map<String, String> data, Class<T> returnClass) throws ErrorException {
 		try {
-			HttpURLConnection connection = baseConnect(siteURL, cookie, "POST");
-			
-			String value = "";
+			JSONObject dataObject = new JSONObject();
 			for (String key : data.keySet()) {
-				value += key + "=" + data.get(key) + "&";
+				dataObject.put(key, data.get(key));
 			}
-			value = value.substring(0, value.length() - 1); // remove the last &
+			String passData = dataObject.toString();
+			HttpURLConnection connection = baseConnect(siteURL, cookie, "POST");
 			PrintWriter writer = new PrintWriter(connection.getOutputStream());
-			writer.print(value);
+			writer.print(passData);
 			writer.flush();
 			connection.connect();
 			
