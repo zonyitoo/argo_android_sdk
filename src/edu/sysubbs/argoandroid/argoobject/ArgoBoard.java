@@ -6,6 +6,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import edu.sysubbs.argoandroid.util.ArgoConstant;
+
+import android.util.Log;
+
 public class ArgoBoard extends BaseObject {
 
 	public String boardname = null; // boardname or filename 版面名字
@@ -80,7 +84,6 @@ public class ArgoBoard extends BaseObject {
 			e.printStackTrace();
 			this.lastAuthor = null;
 		}
-		
 	}
 
 }

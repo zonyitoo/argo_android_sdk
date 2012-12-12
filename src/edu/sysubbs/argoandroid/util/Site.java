@@ -8,6 +8,7 @@ public class Site {
 	public static String QUERY_SECTION = SITE + "/section/";
 	
 	public static String QUERY_USER = SITE + "/user/query/";
+	public static String QUERY_FAV_BOARD = SITE + "/user/fav/";
 	
 	public static String GET_AVATAR = "http://bbs.sysu.edu.cn/avatar/";
 }

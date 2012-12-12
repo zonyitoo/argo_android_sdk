@@ -1,9 +1,9 @@
 package edu.sysubbs.argoandroid.argoservices.user;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
-import org.json.JSONObject;
-
+import edu.sysubbs.argoandroid.argoobject.ArgoBoard;
 import edu.sysubbs.argoandroid.argoobject.ArgoQueryUser;
 import edu.sysubbs.argoandroid.util.ErrorException;
 import edu.sysubbs.argoandroid.util.HttpManager;
@@ -16,5 +16,11 @@ public class UserInfoService {
 		data.put("userid", userid);
 		ArgoQueryUser user = manager.getResposneAsObject(Site.QUERY_USER, null, data, ArgoQueryUser.class);
 		return user;
+	}
+	
+	public ArrayList<ArgoBoard> getFavBoards(String cookie) throws ErrorException {
+		HttpManager manager = new HttpManager();
+		ArrayList<ArgoBoard> boardList = manager.getResponseAsList(Site.QUERY_FAV_BOARD, cookie, null, ArgoBoard.class);
+		return boardList;
 	}
 }
