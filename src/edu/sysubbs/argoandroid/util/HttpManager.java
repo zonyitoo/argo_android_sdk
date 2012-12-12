@@ -16,6 +16,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.util.Log;
+
 import edu.sysubbs.argoandroid.argoobject.BaseObject;
 
 
@@ -50,16 +52,17 @@ public class HttpManager {
 			url += queryData;
 		}*/
 		try {
-			JSONObject dataObject = new JSONObject();
-			for (String key : data.keySet()) {
-				dataObject.put(key, data.get(key));
-			}
-			String passData = dataObject.toString();
 			HttpURLConnection connection = baseConnect(url, cookie, "GET");
-			
-			PrintWriter writer = new PrintWriter(connection.getOutputStream());
-			writer.print(passData);
-			writer.flush();
+			if (data != null) {
+				JSONObject dataObject = new JSONObject();
+				for (String key : data.keySet()) {
+					dataObject.put(key, data.get(key));
+				}
+				String passData = dataObject.toString();
+				PrintWriter writer = new PrintWriter(connection.getOutputStream());
+				writer.print(passData);
+				writer.flush();
+			}
 			
 			connection.connect();
 			InputStreamReader isr = new InputStreamReader(connection.getInputStream());
@@ -117,16 +120,18 @@ public class HttpManager {
 			url += queryData;
 		}*/
 		try {
-			JSONObject dataObject = new JSONObject();
-			for (String key : data.keySet()) {
-				dataObject.put(key, data.get(key));
-			}
-			String passData = dataObject.toString();
 			HttpURLConnection connection = baseConnect(url, cookie, "GET");
-			
-			PrintWriter writer = new PrintWriter(connection.getOutputStream());
-			writer.print(passData);
-			writer.flush();
+			if (data != null) {
+				JSONObject dataObject = new JSONObject();
+				for (String key : data.keySet()) {
+					dataObject.put(key, data.get(key));
+				}
+				String passData = dataObject.toString();
+				
+				PrintWriter writer = new PrintWriter(connection.getOutputStream());
+				writer.print(passData);
+				writer.flush();
+			}
 			
 			InputStreamReader isr = new InputStreamReader(connection.getInputStream());
 			BufferedReader reader = new BufferedReader(isr);
@@ -179,21 +184,24 @@ public class HttpManager {
 				value += key + "=" + data.get(key) + "&";
 			}
 			value = value.substring(0, value.length() - 1); // remove the last &*/
-			JSONObject dataObject = new JSONObject();
-			for (String key : data.keySet()) {
-				dataObject.put(key, data.get(key));
-			}
-			String passData = dataObject.toString();
 			HttpURLConnection connection = baseConnect(siteURL, cookie, "POST");
-			PrintWriter writer = new PrintWriter(connection.getOutputStream());
-			writer.print(passData);
-			writer.flush();
+			if (data != null) {
+				JSONObject dataObject = new JSONObject();
+				for (String key : data.keySet()) {
+					dataObject.put(key, data.get(key));
+				}
+				String passData = dataObject.toString();
+				PrintWriter writer = new PrintWriter(connection.getOutputStream());
+				writer.print(passData);
+				writer.flush();
+			}
 			connection.connect();
 			
 			InputStreamReader isr = new InputStreamReader(connection.getInputStream());
 			BufferedReader reader = new BufferedReader(isr);
 			String object = reader.readLine();
 			JSONObject jsonObject = new JSONObject(object);
+			//Log.d(ArgoConstant.LOG_TAG, jsonObject.toString());
 			if (jsonObject.get("success").toString().equals("1")) {
 				//return jsonObject.getJSONObject("data");
 				T t = returnClass.newInstance();
@@ -231,15 +239,17 @@ public class HttpManager {
 	public <T extends BaseObject> ArrayList<T> postDataByMapAndGetList(
 			String siteURL, String cookie, Map<String, String> data, Class<T> returnClass) throws ErrorException {
 		try {
-			JSONObject dataObject = new JSONObject();
-			for (String key : data.keySet()) {
-				dataObject.put(key, data.get(key));
-			}
-			String passData = dataObject.toString();
 			HttpURLConnection connection = baseConnect(siteURL, cookie, "POST");
-			PrintWriter writer = new PrintWriter(connection.getOutputStream());
-			writer.print(passData);
-			writer.flush();
+			if (data != null) {
+				JSONObject dataObject = new JSONObject();
+				for (String key : data.keySet()) {
+					dataObject.put(key, data.get(key));
+				}
+				String passData = dataObject.toString();
+				PrintWriter writer = new PrintWriter(connection.getOutputStream());
+				writer.print(passData);
+				writer.flush();
+			}
 			connection.connect();
 			
 			InputStreamReader isr = new InputStreamReader(connection.getInputStream());
