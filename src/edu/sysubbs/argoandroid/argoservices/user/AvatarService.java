@@ -32,4 +32,9 @@ public class AvatarService {
 		}
 		return null;
 	}
+	
+	public boolean updateAvatar(String cookie, Bitmap avatar) {
+		// not implement
+		return false;
+	}
 }

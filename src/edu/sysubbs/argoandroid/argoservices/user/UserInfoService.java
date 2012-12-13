@@ -5,6 +5,8 @@ import java.util.HashMap;
 
 import edu.sysubbs.argoandroid.argoobject.ArgoBoard;
 import edu.sysubbs.argoandroid.argoobject.ArgoQueryUser;
+import edu.sysubbs.argoandroid.argoobject.ArgoSelfUser;
+import edu.sysubbs.argoandroid.argoobject.BaseObject;
 import edu.sysubbs.argoandroid.util.ErrorException;
 import edu.sysubbs.argoandroid.util.HttpManager;
 import edu.sysubbs.argoandroid.util.Site;
@@ -14,7 +16,7 @@ public class UserInfoService {
 		HttpManager manager = new HttpManager();
 		HashMap<String, String> data = new HashMap<String, String>();
 		data.put("userid", userid);
-		ArgoQueryUser user = manager.getResposneAsObject(Site.QUERY_USER, null, data, ArgoQueryUser.class);
+		ArgoQueryUser user = manager.getResposneAsObject(Site.QUERY_USER_INFO, null, data, ArgoQueryUser.class);
 		return user;
 	}
 	
@@ -23,4 +25,90 @@ public class UserInfoService {
 		ArrayList<ArgoBoard> boardList = manager.getResponseAsList(Site.QUERY_FAV_BOARD, cookie, null, ArgoBoard.class);
 		return boardList;
 	}
+	
+	public boolean addFavBoard(String cookie, String boardname) {
+		HttpManager manager = new HttpManager();
+		boolean success = false;
+		HashMap<String, String> data = new HashMap<String, String>();
+		data.put("boardname", boardname);
+		try {
+			manager.postDataByMapAndGetObject(Site.ADD_FAV_BORAD, cookie, data, BaseObject.class);
+			success = true;
+		} catch (ErrorException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			success = false;
+		}
+		return success;
+	}
+	
+	public boolean deleteFavBoard(String cookie, String boardname) {
+		HttpManager manager = new HttpManager();
+		boolean success = false;
+		HashMap<String, String> data = new HashMap<String, String>();
+		data.put("boardname", boardname);
+		try {
+			manager.postDataByMapAndGetObject(Site.DEL_FAV_BOARD, cookie, data, BaseObject.class);
+			success = true;
+		} catch (ErrorException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			success = false;
+		}
+		return success;
+	}
+	
+	public boolean updateUserInfo(String cookie, String username, String realname, 
+			String gender, String address, String email, String birthyear, String birthmonth, String birthday, String plan,
+			String signautre) {
+		HttpManager manager = new HttpManager();
+		boolean success = false;
+		HashMap<String, String> data = new HashMap<String, String>();
+		if (username != null) {
+			data.put("username", username);
+		}
+		if (realname != null) {
+			data.put("realname", realname);
+		}
+		if (gender != null) {
+			data.put("gender", gender);
+		}
+		if (address != null) {
+			data.put("address", address);
+		}
+		if (email != null) {
+			data.put("email", email);
+		}
+		if (birthyear != null) {
+			data.put("birthyear", birthyear);
+		}
+		if (birthmonth != null) {
+			data.put("birthmonth", birthmonth);
+		}
+		if (birthday != null) {
+			data.put("birthday", birthday);
+		}
+		if (plan != null) {
+			data.put("plan", plan);
+		}
+		if (signautre != null) {
+			data.put("signature", signautre);
+		}
+		try {
+			manager.postDataByMapAndGetObject(Site.UPDATE_USER_INFO, cookie, data, BaseObject.class);
+			success = true;
+		} catch (ErrorException e) {
+			success = false;
+		}
+		
+		return success;
+	}
+	
+	public ArgoSelfUser getSelfInfo(String cookie) throws ErrorException {
+		HttpManager manager = new HttpManager();
+		ArgoSelfUser argoSelfUser = manager.getResposneAsObject(Site.GET_SELF_INFO, cookie, null, ArgoSelfUser.class);
+		return argoSelfUser;
+	}
+	
+	
 }

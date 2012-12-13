@@ -12,4 +12,6 @@ public class ErrorCode {
 	public static String _301 = "301"; // 未登录
 	public static String _302 = "302"; // 确认密码不匹配
 	public static String _303 = "303"; // 非法用户名
+	public static String _304 = "304"; // 该id已被注册
+	public static String _305 = "305"; // 性别只能选择M 或者 F
 }
