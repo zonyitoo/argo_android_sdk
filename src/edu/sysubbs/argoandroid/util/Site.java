@@ -33,4 +33,6 @@ public class Site {
 	public static final String GET_MAIL_LIST = SITE + "/mail/list/";
 	public static final String POST_MAIL_SEND = SITE + "/mail/send/";
 	public static final String POST_MAIL_DEL = SITE + "/mail/del/";
+	
+	public static final String GET_COMM_TOPTEN = SITE + "/comm/topten/";
 }
