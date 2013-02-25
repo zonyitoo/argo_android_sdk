@@ -5,7 +5,7 @@ import org.json.JSONObject;
 
 public class ArgoMailBox extends BaseObject {
 	
-	int total;
+	public int total;
 	public String used_size;
 	public String total_size;
 
