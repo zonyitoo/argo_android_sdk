@@ -37,8 +37,8 @@ public class HttpManager {
 			return connection;
 	}
 	
-	public <T extends BaseObject> T getResposneAsObject(
-			String siteURL, String cookie, Map<String, String> data, Class<T> returnClass) throws ErrorException {
+	public <T extends BaseObject> T getResponseAsObject(
+			String siteURL, String cookie, Map<String, Object> data, Class<T> returnClass) throws ErrorException {
 		String url = siteURL;
 		/*
 		if (data != null) {
@@ -54,10 +54,7 @@ public class HttpManager {
 		try {
 			HttpURLConnection connection = baseConnect(url, cookie, "GET");
 			if (data != null) {
-				JSONObject dataObject = new JSONObject();
-				for (String key : data.keySet()) {
-					dataObject.put(key, data.get(key));
-				}
+				JSONObject dataObject = new JSONObject(data);
 				String passData = dataObject.toString();
 				PrintWriter writer = new PrintWriter(connection.getOutputStream());
 				writer.print(passData);
@@ -106,7 +103,7 @@ public class HttpManager {
 	}
 	
 	public <T extends BaseObject> ArrayList<T> getResponseAsList(
-			String siteURL, String cookie, Map<String, String> data, Class<T> returnClass) throws ErrorException {
+			String siteURL, String cookie, Map<String, Object> data, Class<T> returnClass) throws ErrorException {
 		String url = siteURL;
 		/*
 		if (data != null) {
@@ -122,10 +119,7 @@ public class HttpManager {
 		try {
 			HttpURLConnection connection = baseConnect(url, cookie, "GET");
 			if (data != null) {
-				JSONObject dataObject = new JSONObject();
-				for (String key : data.keySet()) {
-					dataObject.put(key, data.get(key));
-				}
+				JSONObject dataObject = new JSONObject(data);
 				String passData = dataObject.toString();
 				
 				PrintWriter writer = new PrintWriter(connection.getOutputStream());
@@ -175,8 +169,89 @@ public class HttpManager {
 		return null; // for exception, or server error
 	}
 	
+	public <T> T getResponseAsBaseObject(String siteURL, String cookie, Map<String, Object> data) throws ErrorException {
+		try {
+			HttpURLConnection connection = baseConnect(siteURL, cookie, "GET");
+			
+			if (data != null) {
+				JSONObject dataObject = new JSONObject(data);
+				String passData = dataObject.toString();
+				PrintWriter writer = new PrintWriter(connection.getOutputStream());
+				writer.print(passData);
+				writer.flush();
+			}
+			connection.connect();
+			
+			InputStreamReader isr = new InputStreamReader(connection.getInputStream());
+			BufferedReader reader = new BufferedReader(isr);
+			String object = reader.readLine();
+			JSONObject jsonObject = new JSONObject(object);
+			//Log.d(ArgoConstant.LOG_TAG, jsonObject.toString());
+			if (jsonObject.get("success").toString().equals("1")) {
+				//return jsonObject.getJSONObject("data");
+				return (T) jsonObject.get("data");
+			}
+			else {
+				String error = jsonObject.get("error").toString();
+				String code = jsonObject.get("code").toString();
+				throw new ErrorException(error, code);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	public <T> ArrayList<T> getResponseAsBaseObjectList(String siteURL, String cookie, Map<String, Object> data) throws ErrorException {
+		try {
+			HttpURLConnection connection = baseConnect(siteURL, cookie, "GET");
+			
+			if (data != null) {
+				JSONObject dataObject = new JSONObject(data);
+				String passData = dataObject.toString();
+				PrintWriter writer = new PrintWriter(connection.getOutputStream());
+				writer.print(passData);
+				writer.flush();
+			}
+			connection.connect();
+			
+			InputStreamReader isr = new InputStreamReader(connection.getInputStream());
+			BufferedReader reader = new BufferedReader(isr);
+			String object = reader.readLine();
+			JSONObject jsonObject = new JSONObject(object);
+			//Log.d(ArgoConstant.LOG_TAG, jsonObject.toString());
+			if (jsonObject.get("success").toString().equals("1")) {
+				//return jsonObject.getJSONObject("data");
+				JSONArray array = jsonObject.getJSONArray("data");
+				ArrayList<T> objList = new ArrayList<T>();
+				for (int i = 0; i < array.length(); ++ i) {
+					objList.add((T) array.get(i));
+				}
+				return objList;
+			}
+			else {
+				String error = jsonObject.get("error").toString();
+				String code = jsonObject.get("code").toString();
+				throw new ErrorException(error, code);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
 	public <T extends BaseObject> T postDataByMapAndGetObject(
-			String siteURL, String cookie, Map<String, String> data, Class<T> returnClass) throws ErrorException {
+			String siteURL, String cookie, Map<String, Object> data, Class<T> returnClass) throws ErrorException {
 		try {
 			/*
 			String value = "";
@@ -186,10 +261,7 @@ public class HttpManager {
 			value = value.substring(0, value.length() - 1); // remove the last &*/
 			HttpURLConnection connection = baseConnect(siteURL, cookie, "POST");
 			if (data != null) {
-				JSONObject dataObject = new JSONObject();
-				for (String key : data.keySet()) {
-					dataObject.put(key, data.get(key));
-				}
+				JSONObject dataObject = new JSONObject(data);
 				String passData = dataObject.toString();
 				PrintWriter writer = new PrintWriter(connection.getOutputStream());
 				writer.print(passData);
@@ -205,7 +277,7 @@ public class HttpManager {
 			if (jsonObject.get("success").toString().equals("1")) {
 				//return jsonObject.getJSONObject("data");
 				T t = returnClass.newInstance();
-				t.parse(jsonObject.getJSONObject("success"));
+				t.parse(jsonObject.getJSONObject("data"));
 				return t;
 			}
 			else {
@@ -237,14 +309,11 @@ public class HttpManager {
 	}
 	
 	public <T extends BaseObject> ArrayList<T> postDataByMapAndGetList(
-			String siteURL, String cookie, Map<String, String> data, Class<T> returnClass) throws ErrorException {
+			String siteURL, String cookie, Map<String, Object> data, Class<T> returnClass) throws ErrorException {
 		try {
 			HttpURLConnection connection = baseConnect(siteURL, cookie, "POST");
 			if (data != null) {
-				JSONObject dataObject = new JSONObject();
-				for (String key : data.keySet()) {
-					dataObject.put(key, data.get(key));
-				}
+				JSONObject dataObject = new JSONObject(data);
 				String passData = dataObject.toString();
 				PrintWriter writer = new PrintWriter(connection.getOutputStream());
 				writer.print(passData);
@@ -288,6 +357,49 @@ public class HttpManager {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null; // for exception, or server error
+	}
+	
+	public <T> T postDataByMapAndGetBaseObject(
+			String siteURL, String cookie, Map<String, Object> data) throws ErrorException {
+		try {
+			HttpURLConnection connection = baseConnect(siteURL, cookie, "POST");
+			if (data != null) {
+				JSONObject dataObject = new JSONObject(data);
+				String passData = dataObject.toString();
+				PrintWriter writer = new PrintWriter(connection.getOutputStream());
+				writer.print(passData);
+				writer.flush();
+			}
+			connection.connect();
+			
+			InputStreamReader isr = new InputStreamReader(connection.getInputStream());
+			BufferedReader reader = new BufferedReader(isr);
+			String object = reader.readLine();
+			JSONObject jsonObject = new JSONObject(object);
+			if (jsonObject.get("success").toString().equals("1")) {
+				//return jsonObject.getJSONArray("data");
+				return (T) jsonObject.get("data");
+			}
+			else {
+				String error = jsonObject.get("error").toString();
+				String code = jsonObject.get("code").toString();
+				throw new ErrorException(error, code);
+			}
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ProtocolException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

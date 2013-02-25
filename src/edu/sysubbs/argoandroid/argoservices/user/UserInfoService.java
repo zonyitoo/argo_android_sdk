@@ -14,7 +14,7 @@ import edu.sysubbs.argoandroid.util.Site;
 public class UserInfoService {
 	public ArgoQueryUser queryOtherUser(String userid) throws ErrorException {
 		HttpManager manager = new HttpManager();
-		HashMap<String, String> data = new HashMap<String, String>();
+		HashMap<String, Object> data = new HashMap<String, Object>();
 		data.put("userid", userid);
 		ArgoQueryUser user = manager.getResposneAsObject(Site.QUERY_USER_INFO, null, data, ArgoQueryUser.class);
 		return user;
@@ -29,7 +29,7 @@ public class UserInfoService {
 	public boolean addFavBoard(String cookie, String boardname) {
 		HttpManager manager = new HttpManager();
 		boolean success = false;
-		HashMap<String, String> data = new HashMap<String, String>();
+		HashMap<String, Object> data = new HashMap<String, Object>();
 		data.put("boardname", boardname);
 		try {
 			manager.postDataByMapAndGetObject(Site.ADD_FAV_BORAD, cookie, data, BaseObject.class);
@@ -45,7 +45,7 @@ public class UserInfoService {
 	public boolean deleteFavBoard(String cookie, String boardname) {
 		HttpManager manager = new HttpManager();
 		boolean success = false;
-		HashMap<String, String> data = new HashMap<String, String>();
+		HashMap<String, Object> data = new HashMap<String, Object>();
 		data.put("boardname", boardname);
 		try {
 			manager.postDataByMapAndGetObject(Site.DEL_FAV_BOARD, cookie, data, BaseObject.class);
@@ -63,7 +63,7 @@ public class UserInfoService {
 			String signautre) {
 		HttpManager manager = new HttpManager();
 		boolean success = false;
-		HashMap<String, String> data = new HashMap<String, String>();
+		HashMap<String, Object> data = new HashMap<String, Object>();
 		if (username != null) {
 			data.put("username", username);
 		}
