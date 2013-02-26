@@ -2,4 +2,3 @@ gen/
 bin/
 *.log
 .settings/
-project.properties
