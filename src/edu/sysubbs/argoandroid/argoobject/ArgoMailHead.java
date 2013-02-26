@@ -7,7 +7,7 @@ public class ArgoMailHead extends BaseObject {
 
 	public int index;
 	public int flag;
-	public long filetime;
+	public String filetime;
 	public String owner;
 	public String title;
 	public boolean reply;
@@ -17,10 +17,10 @@ public class ArgoMailHead extends BaseObject {
 		try {
 			index = object.getInt("index");
 			flag = object.getInt("flag");
-			filetime = object.getLong("filetime");
+			filetime = object.getString("filetime");
 			owner = object.getString("owner");
 			title = object.getString("title");
-			reply = object.getBoolean("reply");
+			reply = object.getInt("reply") == 1;
 		} catch (JSONException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();

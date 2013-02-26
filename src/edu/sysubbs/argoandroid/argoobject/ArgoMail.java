@@ -17,7 +17,7 @@ public class ArgoMail extends BaseObject {
 	public void parse(JSONObject object) {
 		try {
 			index = object.getInt("index");
-			flag = object.getBoolean("flag");
+			flag = object.getInt("flag") == 1;
 			filetime = object.getLong("filetime");
 			owner = object.getString("owner");
 			title = object.getString("title");

@@ -11,6 +11,6 @@ import edu.sysubbs.argoandroid.util.Site;
 public class ArgoCommunityService {
 	public ArrayList<ArgoToptenPost> getToptenPosts() throws ErrorException {
 		HttpManager manager = new HttpManager();
-		return manager.getResponseAsList(Site.GET_COMM_TOPTEN, null, new HashMap<String, Object>(), ArgoToptenPost.class);
+		return manager.getResponseAsList(Site.GET_COMM_TOPTEN, null, null, ArgoToptenPost.class);
 	}
 }

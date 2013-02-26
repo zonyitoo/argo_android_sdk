@@ -12,7 +12,7 @@ import edu.sysubbs.argoandroid.util.Site;
 public class ArgoMailService {
 	public ArgoMailBox getMailBox(String cookie) throws ErrorException {
 		HttpManager manager = new HttpManager();
-		return manager.getResponseAsObject(Site.GET_MAILBOX, cookie, new HashMap<String, Object>(), ArgoMailBox.class);
+		return manager.getResponseAsObject(Site.GET_MAILBOX, cookie, null, ArgoMailBox.class);
 	}
 	
 	public ArrayList<ArgoMailHead> getArgoMailHeads(String cookie, int start) throws ErrorException {
