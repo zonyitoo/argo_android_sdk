@@ -37,7 +37,6 @@ public class UserCookieService {
 			BufferedReader reader = new BufferedReader(isr);
 			String object = reader.readLine();
 			JSONObject jsonObject = new JSONObject(object);
-			//Log.d(ArgoConstant.LOG_TAG, jsonObject.toString());
 			if (jsonObject.get("success").toString().equals("1")) {
 				List<String> cookieList = connection.getHeaderFields().get("Set-Cookie");
 				String value = "";
@@ -54,7 +53,7 @@ public class UserCookieService {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (JSONException e) {
+ 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

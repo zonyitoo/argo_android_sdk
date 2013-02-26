@@ -19,9 +19,9 @@ public class Site {
 	public static final String GET_ALL_BORAD_NAME = SITE + "/board/all/";
 	public static final String GET_ALL_BOARD_INFO = SITE + "/board/alls/";
 	public static final String GET_BOARD_INFO = SITE + "/board/get/";
-	public static final String GET_BOARD_INFO_BY_SECCODE = "/board/getbysec/";
-	public static final String CLEAR_BOARD_UNREAD = "/board/clear/";
-	public static final String GET_READED_POST_INDEX_LIST = "/board/readmark/";
+	public static final String GET_BOARD_INFO_BY_SECCODE = SITE + "/board/getbysec/";
+	public static final String CLEAR_BOARD_UNREAD = SITE + "/board/clear/";
+	public static final String GET_READED_POST_INDEX_LIST = SITE + "/board/readmark/";
 	
 	public static final String GET_POST_LIST = SITE + "/post/list/";
 	public static final String GET_POST_NEARNAME = SITE + "/post/nearname/";

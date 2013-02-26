@@ -66,8 +66,8 @@ public class HttpManager {
 			BufferedReader reader = new BufferedReader(isr);
 			String value = reader.readLine();
 			JSONObject object = new JSONObject(value);
-			if (object.get("success").toString().equals("1")) {
-				//return object.getJSONObject("data");
+			//Log.d("Ragnarok", object.toString());
+			if (object.get("success").toString().equals("1") || object.get("success").toString().equals("true")) {
 				try {
 					T t = returnClass.newInstance();
 					t.parse(object.getJSONObject("data"));
