@@ -13,7 +13,7 @@ public class ArgoPostHead extends BaseObject {
 	public String title;
 	public String filename;
 	public boolean unread;
-	public int mark;
+	public String mark;
 	
 	@Override
 	public void parse(JSONObject object) {
@@ -24,8 +24,8 @@ public class ArgoPostHead extends BaseObject {
 			owner = object.getString("owner");
 			title = object.getString("title");
 			filename = object.getString("filename");
-			unread = object.getBoolean("unread");
-			mark = object.getInt("mark");
+			unread = (object.getInt("unread") == 1);
+			mark = object.getString("mark");
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -54,7 +54,17 @@ public class HttpManager {
 		try {
 			HttpURLConnection connection = baseConnect(url, cookie, "GET");
 			if (data != null) {
-				JSONObject dataObject = new JSONObject(data);
+				JSONObject dataObject = new JSONObject();
+				for (String key: data.keySet()) {
+					Object object = data.get(key);
+					if (object instanceof ArrayList) {
+						JSONArray array = new JSONArray((ArrayList<?>) object);
+						dataObject.put(key, array);
+					}
+					else {
+						dataObject.put(key, object);
+					}
+				}
 				String passData = dataObject.toString();
 				PrintWriter writer = new PrintWriter(connection.getOutputStream());
 				writer.print(passData);
@@ -119,7 +129,17 @@ public class HttpManager {
 		try {
 			HttpURLConnection connection = baseConnect(url, cookie, "GET");
 			if (data != null) {
-				JSONObject dataObject = new JSONObject(data);
+				JSONObject dataObject = new JSONObject();
+				for (String key: data.keySet()) {
+					Object object = data.get(key);
+					if (object instanceof ArrayList) {
+						JSONArray array = new JSONArray((ArrayList<?>) object);
+						dataObject.put(key, array);
+					}
+					else {
+						dataObject.put(key, object);
+					}
+				}
 				String passData = dataObject.toString();
 				
 				PrintWriter writer = new PrintWriter(connection.getOutputStream());
@@ -174,7 +194,17 @@ public class HttpManager {
 			HttpURLConnection connection = baseConnect(siteURL, cookie, "GET");
 			
 			if (data != null) {
-				JSONObject dataObject = new JSONObject(data);
+				JSONObject dataObject = new JSONObject();
+				for (String key: data.keySet()) {
+					Object object = data.get(key);
+					if (object instanceof ArrayList) {
+						JSONArray array = new JSONArray((ArrayList<?>) object);
+						dataObject.put(key, array);
+					}
+					else {
+						dataObject.put(key, object);
+					}
+				}
 				String passData = dataObject.toString();
 				PrintWriter writer = new PrintWriter(connection.getOutputStream());
 				writer.print(passData);
@@ -212,7 +242,17 @@ public class HttpManager {
 			HttpURLConnection connection = baseConnect(siteURL, cookie, "GET");
 			
 			if (data != null) {
-				JSONObject dataObject = new JSONObject(data);
+				JSONObject dataObject = new JSONObject();
+				for (String key: data.keySet()) {
+					Object object = data.get(key);
+					if (object instanceof ArrayList) {
+						JSONArray array = new JSONArray((ArrayList<?>) object);
+						dataObject.put(key, array);
+					}
+					else {
+						dataObject.put(key, object);
+					}
+				}
 				String passData = dataObject.toString();
 				PrintWriter writer = new PrintWriter(connection.getOutputStream());
 				writer.print(passData);
@@ -261,7 +301,17 @@ public class HttpManager {
 			value = value.substring(0, value.length() - 1); // remove the last &*/
 			HttpURLConnection connection = baseConnect(siteURL, cookie, "POST");
 			if (data != null) {
-				JSONObject dataObject = new JSONObject(data);
+				JSONObject dataObject = new JSONObject();
+				for (String key: data.keySet()) {
+					Object object = data.get(key);
+					if (object instanceof ArrayList) {
+						JSONArray array = new JSONArray((ArrayList<?>) object);
+						dataObject.put(key, array);
+					}
+					else {
+						dataObject.put(key, object);
+					}
+				}
 				String passData = dataObject.toString();
 				PrintWriter writer = new PrintWriter(connection.getOutputStream());
 				writer.print(passData);
@@ -313,7 +363,17 @@ public class HttpManager {
 		try {
 			HttpURLConnection connection = baseConnect(siteURL, cookie, "POST");
 			if (data != null) {
-				JSONObject dataObject = new JSONObject(data);
+				JSONObject dataObject = new JSONObject();
+				for (String key: data.keySet()) {
+					Object object = data.get(key);
+					if (object instanceof ArrayList) {
+						JSONArray array = new JSONArray((ArrayList<?>) object);
+						dataObject.put(key, array);
+					}
+					else {
+						dataObject.put(key, object);
+					}
+				}
 				String passData = dataObject.toString();
 				PrintWriter writer = new PrintWriter(connection.getOutputStream());
 				writer.print(passData);
@@ -369,7 +429,18 @@ public class HttpManager {
 		try {
 			HttpURLConnection connection = baseConnect(siteURL, cookie, "POST");
 			if (data != null) {
-				JSONObject dataObject = new JSONObject(data);
+				JSONObject dataObject = new JSONObject();
+				for (String key: data.keySet()) {
+					Object object = data.get(key);
+					if (object instanceof ArrayList) {
+						JSONArray array = new JSONArray((ArrayList<?>) object);
+						dataObject.put(key, array);
+					}
+					else {
+						dataObject.put(key, object);
+					}
+				}
+				
 				String passData = dataObject.toString();
 				PrintWriter writer = new PrintWriter(connection.getOutputStream());
 				writer.print(passData);

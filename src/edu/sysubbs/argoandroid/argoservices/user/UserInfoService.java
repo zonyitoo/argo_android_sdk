@@ -16,7 +16,7 @@ public class UserInfoService {
 		HttpManager manager = new HttpManager();
 		HashMap<String, Object> data = new HashMap<String, Object>();
 		data.put("userid", userid);
-		ArgoQueryUser user = manager.getResposneAsObject(Site.QUERY_USER_INFO, null, data, ArgoQueryUser.class);
+		ArgoQueryUser user = manager.getResponseAsObject(Site.QUERY_USER_INFO, null, data, ArgoQueryUser.class);
 		return user;
 	}
 	
@@ -106,7 +106,7 @@ public class UserInfoService {
 	
 	public ArgoSelfUser getSelfInfo(String cookie) throws ErrorException {
 		HttpManager manager = new HttpManager();
-		ArgoSelfUser argoSelfUser = manager.getResposneAsObject(Site.GET_SELF_INFO, cookie, null, ArgoSelfUser.class);
+		ArgoSelfUser argoSelfUser = manager.getResponseAsObject(Site.GET_SELF_INFO, cookie, null, ArgoSelfUser.class);
 		return argoSelfUser;
 	}
 	
