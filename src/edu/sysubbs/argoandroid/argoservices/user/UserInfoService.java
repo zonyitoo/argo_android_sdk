@@ -106,7 +106,7 @@ public class UserInfoService {
 	
 	public ArgoSelfUser getSelfInfo(String cookie) throws ErrorException {
 		HttpManager manager = new HttpManager();
-		ArgoSelfUser argoSelfUser = manager.getResposneAsObject(Site.GET_SELF_INFO, cookie, null, ArgoSelfUser.class);
+		ArgoSelfUser argoSelfUser = manager.getResponseAsObject(Site.GET_SELF_INFO, cookie, null, ArgoSelfUser.class);
 		return argoSelfUser;
 	}
 	
