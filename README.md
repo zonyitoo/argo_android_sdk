@@ -105,7 +105,7 @@ object意义大致相同，这些object有以下这些(有比较不同的意义�
 信息，而``errorCode``是指错误码，具体可看[错误码对照表][17]，而在[``ErrorCode``][18]这个类里面，提供了一个快速的比对
 （尚未完成）
 
-如果有任何问题，欢迎在[issue][16]中提出
+如果有任何问题，欢迎在[issue][19]中提出
 
 [1]:http://dev.argolab.org/api/index.html
 [2]:https://github.com/zonyitoo/argo_android_sdk/tree/master/src/edu/sysubbs/argoandroid/argoobject
@@ -122,7 +122,7 @@ object意义大致相同，这些object有以下这些(有比较不同的意义�
 [13]:https://github.com/zonyitoo/argo_android_sdk/blob/master/src/edu/sysubbs/argoandroid/argoobject/ArgoSelfUser.java
 [14]:https://github.com/zonyitoo/argo_android_sdk/blob/master/src/edu/sysubbs/argoandroid/argoobject/ArgoToptenPost.java
 [15]:https://github.com/zonyitoo/argo_android_sdk/tree/master/src/edu/sysubbs/argoandroid/argoservices
-[16]:https://github.com/zonyitoo/argo_android_sdk/issues
 [16]:https://github.com/zonyitoo/argo_android_sdk/blob/master/src/edu/sysubbs/argoandroid/argoservices/user/UserCookieService.java
 [17]:http://dev.argolab.org/api/api_code.html
 [18]:https://github.com/zonyitoo/argo_android_sdk/blob/master/src/edu/sysubbs/argoandroid/util/ErrorCode.java
+[19]:https://github.com/zonyitoo/argo_android_sdk/issues
