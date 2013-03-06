@@ -1,4 +1,4 @@
-argo_android_sdk
+argo\_android\_sdk
 ================
 
 这个是argo的android版SDK，按照[这里][1]的描述编写
@@ -98,6 +98,9 @@ object意义大致相同，这些object有以下这些(有比较不同的意义�
 ```
 
 其他的services的使用方式也大致相同。
+
+# BUGS
+* mail/del API接口调用出错，目前未解决
 
 # 关于``ErrorException``
 
